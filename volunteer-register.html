@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل متطوع - سواعد</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-content">
+                    <div class="logo">
+<img src="../images/logo.png" alt="سواعد" style="height: 50px; width: auto;">                    </div>
+                        <h1>سواعد</h1>
+                    </div>
+                    <ul class="nav-links">
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="about.html">عن سواعد</a></li>
+                        <li><a href="opportunities.html">فرص التطوع</a></li>
+                        <li><a href="contact.html">تواصل معنا</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="form-container">
+            <h2>تسجيل متطوع جديد</h2>
+            <p>انضم إلينا وكن جزءاً من مجتمع المتطوعين</p>
+            
+            <form id="volunteerForm">
+                <div class="form-group">
+                    <label for="fullName">الاسم الكامل *</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">البريد الإلكتروني *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">رقم الهاتف *</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="city">المدينة *</label>
+                    <select id="city" name="city" required>
+                        <option value="">اختر المدينة</option>
+                        <option value="الرياض">الرياض</option>
+                         <option value="حايل">حائل</option>
+                        <option value="القصيم">القصيم</option>
+                        <option value="ابها">ابها</option>
+                        <option value="مكه">مكه</option>
+                        <option value="جدة">جدة</option>
+                        <option value="الدمام">الدمام</option>
+                        <option value="الخبر">الخبر</option>
+                        <option value="المدينه">المدينه المنوره</option>
+                        <option value="تبوك">تبوك</option>
+                        <option value="اخرى">اخرى</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="skills">المهارات *</label>
+                    <textarea id="skills" name="skills" placeholder="اذكر مهاراتك (مثال: البرمجة، التصميم، التدريس)" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="interests">الاهتمامات *</label>
+                    <textarea id="interests" name="interests" placeholder="اذكر مجالات اهتمامك (مثال: التعليم، البيئة، الصحة)" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="experience">الخبرة السابقة</label>
+                    <textarea id="experience" name="experience" placeholder="اذكر خبراتك في التطوع إن وجدت"></textarea>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="submit" class="btn btn-primary">تسجيل</button>
+                    <a href="index.html" class="btn btn-outline" style="background-color: #6b7280; border-color: #6b7280;">إلغاء</a>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>سواعد</h4>
+                    <p>منصة تربط المتطوعين بالجهات التي تحتاج إلى متطوعين</p>
+                </div>
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="about.html">عن سواعد</a></li>
+                        <li><a href="opportunities.html">فرص التطوع</a></li>
+                        <li><a href="contact.html">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>تواصل معنا</h4>
+                    <p>نسعد بتواصلكم معنا في أي وقت</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 سواعد. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

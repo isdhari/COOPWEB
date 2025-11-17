@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>فرص التطوع - سواعد</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <nav class="navbar">
+      <div class="container">
+        <div class="nav-content">
+          <div class="logo">
+            <a href="index.html">
+              <img src="../images/logo.png" alt="سواعد" style="height: 50px; width: auto;">
+            </a>
+          </div>
+          <ul class="nav-links">
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="about.html">عن سواعد</a></li>
+            <li><a href="opportunities.html" class="active">فرص التطوع</a></li>
+            <li><a href="contact.html">تواصل معنا</a></li>
+          </ul>
+          <div class="nav-buttons">
+            <a href="volunteer-register.html" class="btn btn-secondary">سجل كمتطوع</a>
+            <a href="organization-register.html" class="btn btn-outline">سجل جهتك</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h2 id="no-opportunities">اهلا بكم في سواعد</h2>
+        <p> </p>🌱ازرع اثر في مجتمعك</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Opportunities Section -->
+  <section class="features" style="padding: 4rem 0;">
+    <div class="container">
+      <div id="opportunities-container" class="features-grid">
+        <!-- سيتم تحميل الفرص هنا -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>سواعد</h4>
+          <p>منصة تربط المتطوعين بالجهات التي تحتاج إلى متطوعين</p>
+        </div>
+        <div class="footer-section">
+          <h4>روابط سريعة</h4>
+          <ul>
+            <li><a href="about.html">عن سواعد</a></li>
+            <li><a href="opportunities.html">فرص التطوع</a></li>
+            <li><a href="contact.html">تواصل معنا</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>تواصل معنا</h4>
+          <p>نسعد بتواصلكم معنا في أي وقت</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 سواعد. جميع الحقوق محفوظة.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+
+  <script>
+  window.addEventListener('DOMContentLoaded', async () => {
+    const container = document.getElementById('opportunities-container');
+    const noOpportunities = document.getElementById('no-opportunities');
+
+    try {
+      const res = await fetch('http://localhost:3000/api/opportunities');
+      const opportunities = await res.json();
+
+      if (!opportunities || opportunities.length === 0) {
+        container.innerHTML = '<p style="text-align:center;">لا توجد فرص حالياً</p>';
+        return;
+      }
+
+      // إخفاء النص العلوي "لا توجد فرص" إذا وجدنا بيانات
+      noOpportunities.style.display = 'none';
+
+      container.innerHTML = opportunities.map(opp => `
+        <div class="feature-card">
+          <h4>${opp.title}</h4>
+          <p>${opp.description || ''}</p>
+          <p><strong>المجال:</strong> ${opp.field || 'غير محدد'}</p>
+          <p><strong>المدينة:</strong> ${opp.city || 'غير محددة'}</p>
+          <p><strong>عدد المتطوعين المطلوب:</strong> ${opp.volunteersNeeded || '-'}</p>
+          <a href="opportunity-detail.html?id=${opp.id}" class="btn btn-outline">عرض التفاصيل</a>
+        </div>
+      `).join('');
+    } catch (error) {
+      console.error(error);
+      container.innerHTML = '<p style="color:red;">⚠️ لم يتم الاتصال بالسيرفر</p>';
+    }
+  });
+  </script>
+</body>
+</html>

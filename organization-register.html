@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل جهة - سواعد</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .tab-btn {
+            padding: 1rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--text-light);
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .tab-btn.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .success-message {
+            background-color: #d1fae5;
+            color: #065f46;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-content">
+                    <div class="logo">
+                        <img src="images/logo.png" alt="سواعد" style="height: 50px; width: auto;">
+                    </div>
+                    <ul class="nav-links">
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="about.html">عن سواعد</a></li>
+                        <li><a href="opportunities.html">فرص التطوع</a></li>
+                        <li><a href="contact.html">تواصل معنا</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="form-container">
+            <h2>منصة الجهات التطوعية</h2>
+            <p>سجل جهتك وأضف فرص التطوع</p>
+            
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('register')">تسجيل جهة جديدة</button>
+                <button class="tab-btn" onclick="switchTab('add-opportunity')">إضافة فرصة تطوع</button>
+            </div>
+
+            <!-- Tab 1: Register Organization -->
+            <div id="register" class="tab-content active">
+                <form id="organizationForm">
+                    <div class="form-group">
+                        <label for="orgName">اسم الجهة *</label>
+                        <input type="text" id="orgName" name="orgName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="orgEmail">البريد الإلكتروني *</label>
+                        <input type="email" id="orgEmail" name="orgEmail" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="orgPhone">رقم الهاتف *</label>
+                        <input type="tel" id="orgPhone" name="orgPhone" required>
+                    </div>
+
+                      <div class="form-group">
+                    <label for="city">المدينة *</label>
+                    <select id="city" name="city" required>
+                        <option value="">اختر المدينة</option>
+                        <option value="الرياض">الرياض</option>
+                         <option value="حايل">حائل</option>
+                        <option value="القصيم">القصيم</option>
+                        <option value="ابها">ابها</option>
+                        <option value="مكه">مكه</option>
+                        <option value="جدة">جدة</option>
+                        <option value="الدمام">الدمام</option>
+                        <option value="الخبر">الخبر</option>
+                        <option value="المدينه">المدينه المنوره</option>
+                        <option value="تبوك">تبوك</option>
+                        <option value="اخرى">اخرى</option>
+                    </select>
+                </div>
+
+                    <div class="form-group">
+                        <label for="orgType">نوع الجهة *</label>
+                        <select id="orgType" name="orgType" required>
+                            <option value="">اختر النوع</option>
+                            <option value="جمعية خيرية">جمعية خيرية</option>
+                            <option value="مؤسسة أهلية">مؤسسة أهلية</option>
+                            <option value="مركز تنمية">مركز تنمية</option>
+                            <option value="جهة حكومية">جهة حكومية</option>
+                            <option value="شركة خاصة">شركة خاصة</option>
+                            <option value="مدرسة">مدرسة</option>
+                            <option value="جامعة">جامعة</option>
+                            <option value="مستشفى">مستشفى</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="orgDescription">وصف الجهة *</label>
+                        <textarea id="orgDescription" name="orgDescription" placeholder="اشرح نشاط جهتك والمجالات التي تعمل بها" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="orgWebsite">الموقع الإلكتروني</label>
+                        <input type="url" id="orgWebsite" name="orgWebsite" placeholder="https://example.com">
+                    </div>
+
+                    <div class="form-buttons">
+                        <button type="submit" class="btn btn-primary">تسجيل</button>
+                        <a href="index.html" class="btn btn-outline" style="background-color: #6b7280; border-color: #6b7280;">إلغاء</a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Tab 2: Add Opportunity -->
+            <div id="add-opportunity" class="tab-content">
+                <div id="org-info" style="display: none;">
+                    <div class="success-message">
+                        <p>مرحباً بك <strong id="org-name-display"></strong>! يمكنك الآن إضافة فرص التطوع</p>
+                    </div>
+                </div>
+
+                <form id="opportunityForm">
+                    <input type="hidden" id="orgId" value="">
+
+                    <div class="form-group">
+                        <label for="title">عنوان الفرصة *</label>
+                        <input type="text" id="title" name="title" placeholder="مثال: مساعد تدريس" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="field">المجال *</label>
+                        <select id="field" name="field" required>
+                            <option value="">اختر المجال</option>
+                            <option value="التعليم">التعليم</option>
+                            <option value="الصحة">الصحة</option>
+                            <option value="البيئة">البيئة</option>
+                            <option value="المجتمع">المجتمع</option>
+                            <option value="الرياضة">الرياضة</option>
+                            <option value="الثقافة">الثقافة</option>
+                            <option value="التكنولوجيا">التكنولوجيا</option>
+                            <option value="أخرى">أخرى</option>
+                        </select>
+                    </div>
+
+                     <div class="form-group">
+                    <label for="city">المدينة *</label>
+                    <select id="city" name="city" required>
+                        <option value="">اختر المدينة</option>
+                        <option value="الرياض">الرياض</option>
+                         <option value="حايل">حائل</option>
+                        <option value="القصيم">القصيم</option>
+                        <option value="ابها">ابها</option>
+                        <option value="مكه">مكه</option>
+                        <option value="جدة">جدة</option>
+                        <option value="الدمام">الدمام</option>
+                        <option value="الخبر">الخبر</option>
+                        <option value="المدينه">المدينه المنوره</option>
+                        <option value="تبوك">تبوك</option>
+                        <option value="اخرى">اخرى</option>
+                    </select>
+                </div>
+
+                    <div class="form-group">
+                        <label for="description">وصف الفرصة *</label>
+                        <textarea id="description" name="description" placeholder="اشرح تفاصيل الفرصة والمهام المطلوبة" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="volunteersNeeded">عدد المتطوعين المطلوبين *</label>
+                        <input type="number" id="volunteersNeeded" name="volunteersNeeded" min="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="requirements">المتطلبات *</label>
+                        <textarea id="requirements" name="requirements" placeholder="المهارات والخبرات المطلوبة" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="startDate">تاريخ البداية *</label>
+                        <input type="date" id="startDate" name="startDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="endDate">تاريخ النهاية *</label>
+                        <input type="date" id="endDate" name="endDate" required>
+                    </div>
+
+                    <div class="form-buttons">
+                        <button type="submit" class="btn btn-primary">إضافة الفرصة</button>
+                        <button type="reset" class="btn btn-outline" style="background-color: #6b7280; border-color: #6b7280;">مسح</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>سواعد</h4>
+                    <p>منصة تربط المتطوعين بالجهات التي تحتاج إلى متطوعين</p>
+                </div>
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="about.html">عن سواعد</a></li>
+                        <li><a href="opportunities.html">فرص التطوع</a></li>
+                        <li><a href="contact.html">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>تواصل معنا</h4>
+                    <p>نسعد بتواصلكم معنا في أي وقت</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 سواعد. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Switch between tabs
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        // Handle organization form submission
+        document.getElementById('organizationForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('orgName').value,
+                email: document.getElementById('orgEmail').value,
+                phone: document.getElementById('orgPhone').value,
+                city: document.getElementById('orgCity').value,
+                type: document.getElementById('orgType').value,
+                description: document.getElementById('orgDescription').value,
+                website: document.getElementById('orgWebsite').value || null
+            };
+            
+            console.log('📤 Submitting organization form:', formData);
+            
+            try {
+                const response = await fetch('http://localhost:3000/api/organizations', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    // Save organization ID to localStorage
+                    localStorage.setItem('orgId', data.id);
+                    localStorage.setItem('orgName', formData.name);
+                    
+                    // Show success message
+                    showMessage('تم التسجيل بنجاح! الآن يمكنك إضافة فرص التطوع', 'success');
+                    
+                    // Update add-opportunity tab
+                    document.getElementById('org-info').style.display = 'block';
+                    document.getElementById('org-name-display').textContent = formData.name;
+                    document.getElementById('orgId').value = data.id;
+                    
+                    // Switch to add-opportunity tab
+                    setTimeout(() => {
+                        document.querySelector('[onclick="switchTab(\'add-opportunity\')"]').click();
+                    }, 1500);
+                } else {
+                    showMessage(data.error || 'حدث خطأ في التسجيل', 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showMessage('خطأ في الاتصال بالخادم: ' + error.message, 'error');
+            }
+        });
+
+        // Handle opportunity form submission
+        document.getElementById('opportunityForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const orgId = localStorage.getItem('orgId') || document.getElementById('orgId').value;
+            
+            if (!orgId) {
+                showMessage('يرجى تسجيل جهتك أولاً', 'error');
+                return;
+            }
+            
+            const formData = {
+                organizationId: parseInt(orgId),
+                title: document.getElementById('title').value,
+                field: document.getElementById('field').value,
+                city: document.getElementById('city').value,
+                description: document.getElementById('description').value,
+                volunteersNeeded: parseInt(document.getElementById('volunteersNeeded').value),
+                requirements: document.getElementById('requirements').value,
+                startDate: document.getElementById('startDate').value,
+                endDate: document.getElementById('endDate').value,
+                status: 'active'
+            };
+            
+            console.log('📤 Submitting opportunity form:', formData);
+            
+            try {
+                const response = await fetch('http://localhost:3000/api/opportunities', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    showMessage('تم إضافة الفرصة بنجاح! سيتم نقلك لصفحة الفرص...', 'success');
+                    document.getElementById('opportunityForm').reset();
+                    
+                    // Redirect to opportunities page after 2 seconds
+                    setTimeout(() => {
+                        window.location.href = 'opportunities.html';
+                    }, 2000);
+                } else {
+                    showMessage(data.error || 'حدث خطأ في إضافة الفرصة', 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showMessage('خطأ في الاتصال بالخادم: ' + error.message, 'error');
+            }
+        });
+
+        // Load saved organization data if exists
+        window.addEventListener('load', () => {
+            const savedOrgId = localStorage.getItem('orgId');
+            const savedOrgName = localStorage.getItem('orgName');
+            
+            if (savedOrgId && savedOrgName) {
+                document.getElementById('org-info').style.display = 'block';
+                document.getElementById('org-name-display').textContent = savedOrgName;
+                document.getElementById('orgId').value = savedOrgId;
+            }
+        });
+    </script>
+</body>
+</html>

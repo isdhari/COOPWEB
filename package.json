@@ -1,0 +1,19 @@
+{
+  "name": "sawaed-vanilla",
+  "version": "1.0.0",
+  "description": "منصة سواعد التطوعية - بناء بـ HTML و CSS و JavaScript و Node.js",
+  "main": "server/app.js",
+  "scripts": {
+    "start": "node server/app.js",
+    "dev": "node server/app.js"
+  },
+  "keywords": ["volunteering", "platform", "sawaed"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql2": "^3.6.5",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5"
+  }
+}
